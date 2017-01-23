@@ -1,13 +1,15 @@
 #!/usr/local/bin/python
 
+import sys
+
 class ZipfsSong:
   @staticmethod
   def calculate_zi(f1, song_index):
-    return f1/song_index
+    return float(f1)/song_index
 
   @staticmethod
   def calculate_qi(fi,zi):
-    return fi/float(zi)
+    return float(fi)/float(zi)
 
   @staticmethod
   def include_index(song_list):
@@ -20,7 +22,7 @@ class ZipfsSong:
   @staticmethod
   def include_q(f1, song_list):
     for song in song_list:
-      song['q'] = ZipfsSong.calculate_qi(song['listened'], ZipfsSong.calculate_zi(f1, song['index']))
+      song['q'] = song['listened'] * song['index']
 
     return song_list
 
@@ -36,8 +38,8 @@ class ZipfsSong:
   @staticmethod
   def select_songs_by_q(songs_number, song_list):
     result = []
-    selected_songs = sorted(song_list, reverse=True, cmp=ZipfsSong.compare_song)[:songs_number]
-    for song in selected_songs:
+    song_list.sort(key=lambda t: (t['q'], t['listened'], -t['index']), reverse=True)
+    for song in song_list[:songs_number]:
       result.append(song['name'])
     return  result
 
@@ -51,20 +53,25 @@ class ZipfsSong:
 
 
 def main():
-  n_songs, select_songs = raw_input().split()
-  n_songs = int(n_songs)
-  select_songs = int(select_songs)
-  song_list = []
-  n = 0
+  config_line = raw_input()
+  if config_line != '':
+    n_songs, select_songs = config_line.split()
+    n_songs = int(n_songs)
+    select_songs = int(select_songs)
+    song_list = []
+    n = 0
 
-  while n != n_songs:
-    listened, name = raw_input().split()
-    listened = int(listened)
-    song_list.append({'listened': listened, 'name': name})      
-    n += 1
+    if(n_songs != 0):
+      while n != n_songs:
+        listened, name = raw_input().split()
+        listened = int(listened)
+        song_list.append({'listened': listened, 'name': name})      
+        n += 1
 
-  songs = ZipfsSong.choose_popularities({'songs': n_songs, 'have_to_choose': select_songs, 'song_list': song_list})
-  for song in songs:
-    print(song)
+      songs = ZipfsSong.choose_popularities({'songs': n_songs, 'have_to_choose': select_songs, 'song_list': song_list})
+      for song in songs:
+        print(song)
 
-main()
+  return 0
+
+sys.exit(main())

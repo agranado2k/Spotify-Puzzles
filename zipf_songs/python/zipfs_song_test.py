@@ -110,7 +110,7 @@ class ZipfsSongTests(unittest.TestCase):
     output = [{'index': 1, 'q': 1.0, 'listened': 30, 'name': 'one'},
               {'index': 2, 'q': 2.0, 'listened': 30, 'name': 'two'},
               {'index': 3, 'q': 1.5, 'listened': 15, 'name': 'three'},
-              {'index': 4, 'q': 3.5714285714285716, 'listened': 25, 'name': 'four'}]
+              {'index': 4, 'q': 3.3333333333333335, 'listened': 25, 'name': 'four'}]
 
     self.assertEqual(output, ZipfsSong.include_q(f1, song_list))
 
@@ -119,7 +119,7 @@ class ZipfsSongTests(unittest.TestCase):
     song_list = [{'index': 1, 'q': 1.0, 'listened': 30, 'name': 'one'},
               {'index': 2, 'q': 2.0, 'listened': 30, 'name': 'two'},
               {'index': 3, 'q': 1.5, 'listened': 15, 'name': 'three'},
-              {'index': 4, 'q': 3.5714285714285716, 'listened': 25, 'name': 'four'}]
+              {'index': 4, 'q': 3.3333333333333335, 'listened': 25, 'name': 'four'}]
 
     songs_selected = ['four', 'two']
 
