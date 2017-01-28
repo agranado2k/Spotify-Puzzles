@@ -52,8 +52,8 @@ class CatVsDogTests(unittest.TestCase):
   def test_sample_1(self):
     cats, dogs, voters = 1, 1, 2
     votes = [
-      ['C1', 'D1'],
-      ['D1', 'C1']
+      'C1 D1',
+      'D1 C1'
     ]
 
     viewers = 1
@@ -62,10 +62,10 @@ class CatVsDogTests(unittest.TestCase):
   def test_sample_2(self):
     cats, dogs, voters = 1, 2, 4
     votes = [
-      ['C1', 'D1'],
-      ['C1', 'D1'],
-      ['C1', 'D2'],
-      ['D2', 'C1']
+      'C1 D1',
+      'C1 D1',
+      'C1 D2',
+      'D2 C1'
     ]
 
     viewers = 3
@@ -74,10 +74,10 @@ class CatVsDogTests(unittest.TestCase):
   def test_sample_3(self):
     cats, dogs, voters = 3, 2, 4
     votes = [
-      ['C1', 'D1'],
-      ['C2', 'D1'],
-      ['C3', 'D2'],
-      ['D2', 'C1']
+      'C1 D1',
+      'C2 D1',
+      'D2 C2',
+      'D2 C1'
     ]
 
     viewers = 2
